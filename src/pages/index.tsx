@@ -12,6 +12,7 @@ interface Client {
 }
 
 interface Address {
+  id: number;
   title: string;
 }
 
@@ -39,6 +40,7 @@ const Home: NextPage<Props> = (props) => {
               title={client.name}
               style={{ width: 300, margin: "10px", cursor: "default" }}
               hoverable={true}
+              key={client.id}
             >
               <Space wrap>
                 <Button
@@ -58,8 +60,8 @@ const Home: NextPage<Props> = (props) => {
         </div>
 
         <ul style={{ position: "fixed", left: "50%" }}>
-          {addresses.map((address) => (
-            <li>{address.title}</li>
+          {addresses.map((address: Address) => (
+            <li key={address.id}>{address.title}</li>
           ))}
         </ul>
       </Row>

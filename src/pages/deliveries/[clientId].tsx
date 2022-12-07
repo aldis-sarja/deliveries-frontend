@@ -14,6 +14,7 @@ interface DeliveryRoute {
 }
 
 interface Delivery {
+  id: number;
   type: number;
   status: number;
   delivery_lines: [DeliveryLine];
@@ -37,7 +38,7 @@ interface Props {
   client: Client;
 }
 
-  const Deliveries: NextPage = (props) => {
+  const Deliveries: NextPage<Props> = (props) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -57,14 +58,14 @@ interface Props {
         </div>
 
         <div style={{ margin: "20px" }}>
-          {props.client.addresses.map((address) => getDeliveries(address))}
+          {props.client.addresses.map((address: Address) => getDeliveries(address))}
         </div>
       </Row>
     </div>
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps(context: any) {
   const { params } = context;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/clients/${params.clientId}`
@@ -107,7 +108,7 @@ function getDeliveries(address: Address): ReactNode {
         <h2>{address.title}</h2>
         <ul>
           {address.deliveries.map((delivery) => (
-            <div>
+            <div key={delivery.id}>
               <Card
               size="small"
               title={delivery.route.date}

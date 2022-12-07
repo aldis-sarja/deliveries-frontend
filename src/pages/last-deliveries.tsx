@@ -5,6 +5,7 @@ import { Card, Space } from "antd";
 import NavBar from "../components/NavBar";
 
 interface Client {
+  id: number;
   name: string;
   address: string;
   deliveryDate: string;
@@ -33,6 +34,7 @@ const LastDeliveries: NextPage<Props> = (props) => {
             title={client.name}
             style={{ width: 500, margin: "10px", cursor: "default" }}
             hoverable={true}
+            key={client.id}
           >
             <ul>
               <li>Adrese: {client.address}</li>

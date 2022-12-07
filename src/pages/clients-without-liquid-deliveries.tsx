@@ -11,6 +11,7 @@ interface Client {
 }
 
 interface Address {
+  id: number;
   title: string;
 }
 
@@ -35,10 +36,11 @@ const LastDeliveries: NextPage<Props> = (props) => {
             title={client.name}
             style={{ width: 500, margin: "10px", cursor: "default" }}
             hoverable={true}
+            key={client.id}
           >
             <ul>
-              {client.addresses.map((address) => (
-                <li>Adrese: {address.title}</li>
+              {client.addresses.map((address: Address) => (
+                <li key={address.id}>Adrese: {address.title}</li>
               ))}
             </ul>
           </Card>
