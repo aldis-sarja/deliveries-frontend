@@ -32,6 +32,10 @@ NEXT_PUBLIC_BACKEND_URL=<address:port/api/v1>
 Run:
 
 ```bash
+npm run dev
+```
+or
+```bash
 npm run build
 npm start
 ```
